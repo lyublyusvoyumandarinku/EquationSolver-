@@ -1,4 +1,4 @@
-EquationSolver
+GreatEquationSolver
 
 This project is a program that allows the user to get a solution to a quadratic equation.
 To run the program, the g++ compiler (MinGW, etc.) or any development environment
