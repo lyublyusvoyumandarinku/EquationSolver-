@@ -19,7 +19,9 @@ double rand_num(double step){
 */
 void test_once(double a, double b, double c, int i){
 
-    ASSERT(isfinite(a) && isfinite(b) && isfinite(c));
+    ASSERT(!(isfinite(a)));
+    ASSERT(!(isfinite(b)));
+    ASSERT(!(isfinite(c)));
 
     printf("Test %2.d, results of test: ", i);
 
@@ -34,7 +36,7 @@ void test_once(double a, double b, double c, int i){
         int p1 = (eq_0(a*y1*y1 + b*y1 + c));
         int p2 = (eq_0(a*y2*y2 + b*y2 + c));
 
-        if (p1*p2) ok = 1;
+        if (p1 * p2) ok = 1;
 
         if (p1 == 0)  printf("ERROR! a=%.2lf b=%.2lf c=%.2lf y1=%.2lf", a, b, c, y1);
         if (p2 == 0)  printf("ERROR! a=%.2lf b=%.2lf c=%.2lf y2=%.2lf", a, b, c, y2);
@@ -54,7 +56,6 @@ void test_once(double a, double b, double c, int i){
 
     printf("\n");
 }
-
 
 
 /**tests the program once with random input data*/

@@ -6,8 +6,8 @@
 
 /** eq
 Compares fractional numbers
-\param a,b compared numbers
-\return equal numbers or not
+@param a,b compared numbers
+@return equal numbers or not
 */
 int eq(double a, double b){
     return fabs(a - b) < EPS;
@@ -16,12 +16,13 @@ int eq(double a, double b){
 
 /**eq_0
 Compares fractional number
-\param a compared with zero number
-\return equal number zero or not
+@param a compared with zero number
+@return equal number zero or not
 */
 int eq_0(double a){
     return fabs(a-0) < EPS;
 }
+
 
 
 /**square_equation
@@ -35,7 +36,9 @@ int square_equation(double a, double b, double c, double *x1, double *x2){
     ASSERT(x1 == NULL);
     ASSERT(x2 == NULL);
 
-    ASSERT(!(isfinite(a) && isfinite(b) && isfinite(c)));
+    ASSERT(!(isfinite(a)));
+    ASSERT(!(isfinite(b)));
+    ASSERT(!(isfinite(c)));
 
     if (eq_0(a)) {
         int ans = linear_equation(b, c, x1);
@@ -72,7 +75,9 @@ int square_equation(double a, double b, double c, double *x1, double *x2){
 int linear_equation(double b, double c, double *x1){
 
     ASSERT(x1 == NULL);
-    ASSERT(isfinite(b) && isfinite(c));
+
+    ASSERT(!(isfinite(b)));
+    ASSERT(!(isfinite(c)));
 
     if (eq_0(b) && eq_0(c))  return INF;
 
@@ -82,8 +87,9 @@ int linear_equation(double b, double c, double *x1){
 }
 
 
+
 /**input
-*\param *a,*b,*c - variable addresses
+*@param *a,*b,*c - variable addresses
 */
 void input(double *a, double *b, double *c) {
 
@@ -100,13 +106,16 @@ void input(double *a, double *b, double *c) {
             n = scanf("%lf %lf %lf", a, b, c);
         }
         else{
-            ASSERT(isfinite(*a) && isfinite(*b) && isfinite(*c));
+            ASSERT(!(isfinite(*a)));
+            ASSERT(!(isfinite(*b)));
+            ASSERT(!(isfinite(*c)));
             break;
         }
     }
 
  }
 
+/**auxiliary input function*/
 void pretty_input(){
     while (getchar()!='\n');
     fprintf(stderr, "ERROR!\nEnter the coefficients of the equation again:");
@@ -114,9 +123,20 @@ void pretty_input(){
 
 
 
+/**the function the function starts solving the
+  equation and displays the result of its work on the screen
+ *@param *a,*b,*c - variables ( Coefficients of the equation)
+
+  */
 void output(double a, double b, double c) {
+
+    ASSERT(!(isfinite(a)));
+    ASSERT(!(isfinite(b)));
+    ASSERT(!(isfinite(c)));
+
     double x1 = NAN, x2 = NAN;
     printf("The equation is: (%.2lg)*x^2  + (%.2lg)*x + (%.2lg) = 0\n", a, b, c);
+
     switch(square_equation(a, b, c, &x1, &x2)){
         case 0:   printf("This equation doesn't have roots\n");                          break;
         case 1:   printf("This equation has 1 root: x = %.2lf\n", x1);                   break;

@@ -8,7 +8,7 @@
 */
 #define ASSERT(cond) \
     if (cond) printf("Error in the expression (%s) in line %d ", #cond, __LINE__);  \
-    else printf("OK! ");
+    //else printf("OK! ");
 
 
 const int INF = -1;
