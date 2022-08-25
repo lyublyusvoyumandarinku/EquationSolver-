@@ -1,0 +1,8 @@
+/**rand_num
+*@param step
+*@return a random fractional number in the range [-step; step]
+*/
+double rand_num(double step){
+    double num = -step + (double)(rand()) / RAND_MAX * step * 2;
+    return num;
+}

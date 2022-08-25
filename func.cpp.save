@@ -2,7 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "func.h"
-
+#include "test.h"
 
 /** eq
 Compares fractional numbers
@@ -31,21 +31,27 @@ solves the quadratic equation
 *\return number of solutions
 */
 int square_equation(double a, double b, double c, double *x1, double *x2){
-    ASSERT(isfinite(a) && isfinite(b) && isfinite(c));
+
+    ASSERT(x1 == NULL);
+    ASSERT(x2 == NULL);
+
+    ASSERT(!(isfinite(a) && isfinite(b) && isfinite(c)));
+
     if (eq_0(a)) {
         int ans = linear_equation(b, c, x1);
-        if (ans == 1) x2 = x1;
+        if (ans == 1) *x2 = *x1;
         return ans;
     }
 
     else{
         double d = b*b - 4*a*c;
-        if (d < 0) return 0;
-
-        else if (eq_0(d)) {
+        if (eq_0(d)) {
             *x1 = *x2 = -b / (2*a);
              return 1;
         }
+
+        else if (d < 0) return 0;
+
         else {
             double sd = sqrt(d);
             *x1 = -(b+sd) / (2*a);
@@ -65,6 +71,7 @@ int square_equation(double a, double b, double c, double *x1, double *x2){
 */
 int linear_equation(double b, double c, double *x1){
 
+    ASSERT(x1 == NULL);
     ASSERT(isfinite(b) && isfinite(c));
 
     if (eq_0(b) && eq_0(c))  return INF;
@@ -75,76 +82,52 @@ int linear_equation(double b, double c, double *x1){
 }
 
 
-/**tests the program once with random input data
-*@param a,b, c - Coefficients of the equation
+
+/**input
+*\param *a,*b,*c - variable addresses
 */
-void test_once(double a, double b, double c, int i){
+void input(double *a, double *b, double *c) {
 
-    ASSERT(isfinite(a) && isfinite(b) && isfinite(c));
+    ASSERT(a == NULL);
+    ASSERT(b == NULL);
+    ASSERT(c == NULL);
 
-    printf("Test %3.d, results of test: ", i);
+    printf("HELLO!\nEnter the coefficients of the equation (a, b, c): ");
 
-    double y1 = 0, y2 = 0;
-    int ok = 0;
-
-    int n_roots = square_equation(a, b, c, &y1, &y2);
-
-    if (n_roots == 1) y2 = y1;
-
-    if (n_roots > 0){
-        int p1 = (eq_0(a*y1*y1 + b*y1 + c));
-        int p2 = (eq_0(a*y2*y2 + b*y2 + c));
-
-        if (p1*p2) ok = 1;
-
-        if (p1 == 0)  printf("ERROR! a=%.2lf b=%.2lf c=%.2lf y1=%.2lf", a, b, c, y1);
-        if (p2 == 0)  printf("ERROR! a=%.2lf b=%.2lf c=%.2lf y2=%.2lf", a, b, c, y2);
+    int n = scanf("%lf %lf %lf", a, b, c);
+    while(1){
+        if (n != 3) {
+            pretty_input();
+            n = scanf("%lf %lf %lf", a, b, c);
+        }
+        else{
+            ASSERT(isfinite(*a) && isfinite(*b) && isfinite(*c));
+            break;
+        }
     }
 
-    else  ok = 1;
-    if (ok == 1){
-        printf("All is OK!");
-        if (t > 0)    printf(" Count of roots: %d", t);
+ }
 
-        if (n_roots == INF)   printf(" Infinite number of roots for a = %.2lg, b = %.2lg, c = %.2lg", a,     b,     c);
-        if (n_roots == 0)     printf(" No roots for a = %.2lg, b = %.2lg, c = %.2lg",                 a,     b,     c);
-        if (n_roots == 1)     printf(" (%.2lg)*(%.2lg)^2 + (%.2lg)*(%.2lg) + (%.2lg) = 0",            a, y1, b, y1, c);
-        if (n_roots == 2){    printf(" (%.2lg)*(%.2lg)^2 + (%.2lg)*(%.2lg) + (%.2lg) = 0;  ",         a, y1, b, y1, c);
-                              printf(" (%.2lf)*(%.2lf)^2 + (%.2lf)*(%.2lf) + (%.2lf) = 0",            a, y2, b, y2, c); }
-    }
-
-    printf("\n");
+void pretty_input(){
+    while (getchar()!='\n');
+    fprintf(stderr, "ERROR!\nEnter the coefficients of the equation again:");
 }
 
 
-/**tests the program once with random input data*/
-void testing(){
-    double atest = rand_num(20);
-    double btest = rand_num(20);
-    double ctest = rand_num(20);
 
-    test_once(0,     0,     0,     1);
-
-    test_once(0,     btest, ctest, 2);
-    test_once(atest, 0,     ctest, 3);
-    test_once(atest, btest, 0,     4);
-
-    test_once(atest, 0,     0,     5);
-    test_once(0,     btest, 0,     6);
-    test_once(0,     0,     ctest, 7);
-
-    for (int i = 8; i < 17; i++){
-
-        atest = rand_num(20);
-        btest = rand_num(20);
-        ctest = rand_num(20);
-
-        test_once(atest, btest, ctest, i);
+void output(double a, double b, double c) {
+    
+    double x1 = NAN, x2 = NAN;
+    printf("The equation is: (%.2lg)*x^2  + (%.2lg)*x + (%.2lg) = 0\n", a, b, c);
+    
+    switch(square_equation(a, b, c, &x1, &x2)){
+        case 0:   printf("This equation doesn't have roots\n");                          break;
+        case 1:   printf("This equation has 1 root: x = %.2lf\n", x1);                   break;
+        case 2:   printf("This equation has 2 roots: x1 = %.2lf, x2 = %.2lf\n", x1, x2); break;
+        case INF: printf("This equation have infinite roots\n");                         break;
+        default:  abort();
     }
-    printf("\n");
-}
 
-double rand_num(double step){
-    double num = -step + (double)(rand()) / RAND_MAX * step * 2; 
-    return num;
+    printf("\nChecking: ");
+    test_once(a, b, c, 1);
 }

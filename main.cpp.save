@@ -7,27 +7,25 @@
 #include <locale.h>
 #include "func.h"
 
-#define 
+//#define TESTS
 
 int main(){
     srand(time(NULL));
-         
-    #if test == 0
-    testing();
+
+    #ifdef TESTS
+        testing();
     #endif
 
-    testing();
-    
-    printf("HELLO!\n");
-    printf("Enter the coefficients of the equation (a, b, c): ");
-    
+
+    printf("HELLO!\nEnter the coefficients of the equation (a, b, c): ");
+
     double a = NAN, b = NAN, c = NAN;
     double x1 = 0, x2 = 0;
     int n = scanf("%lf %lf %lf", &a, &b, &c);
     while(1){
         if (n != 3 && getchar()!='\n') {
-            printf("ERROR!\n");
-            fflush (stdout);
+            
+            fprintf(stderr, "ERROR!\n");
 
             n = scanf("%lf %lf %lf", &a, &b, &c);
         }
