@@ -31,7 +31,7 @@ solves the quadratic equation
 *\return number of solutions
 */
 int square_equation(double a, double b, double c, double *x1, double *x2){
-
+    ASSERT(isfinite(a) && isfinite(b) && isfinite(c));
     if (eq_0(a)) {
         int ans = linear_equation(b, c, x1);
         if (ans == 1) x2 = x1;
@@ -64,6 +64,9 @@ int square_equation(double a, double b, double c, double *x1, double *x2){
 *@return number of solutions
 */
 int linear_equation(double b, double c, double *x1){
+
+    ASSERT(isfinite(b) && isfinite(c));
+
     if (eq_0(b) && eq_0(c))  return INF;
 
     if (eq_0(b) && !eq_0(c)) return 0;
@@ -76,22 +79,28 @@ int linear_equation(double b, double c, double *x1){
 *@param a,b, c - Coefficients of the equation
 */
 void test_once(double a, double b, double c, int i){
-    printf("Test %2.d, results of test: ", i);
+
+    ASSERT(isfinite(a) && isfinite(b) && isfinite(c));
+
+    printf("Test %3.d, results of test: ", i);
 
     double y1 = 0, y2 = 0;
     int ok = 0;
+
     int t = square_equation(a, b, c, &y1, &y2);
 
     if (t == 1) y2 = y1;
+
     if (t > 0){
         int p1 = (eq_0(a*y1*y1 + b*y1 + c));
         int p2 = (eq_0(a*y2*y2 + b*y2 + c));
+
         if (p1*p2) ok = 1;
 
         if (p1==0)  printf("ERROR! a=%.2lf b=%.2lf c=%.2lf y1=%.2lf", a, b, c, y1);
         if (p2==0)  printf("ERROR! a=%.2lf b=%.2lf c=%.2lf y2=%.2lf", a, b, c, y2);
-
     }
+
     else  ok = 1;
     if (ok==1){
         printf("All is OK!");
@@ -110,21 +119,26 @@ void test_once(double a, double b, double c, int i){
 
 /**tests the program once with random input data*/
 void testing(){
-    double atest = -20 + rand()%40;
-    double btest = -20 + rand()%40;
-    double ctest = -20 + rand()%40;
-    test_once(0, 0, 0, 1);
-    test_once(atest, btest, 0, 2);
-    test_once(atest, 0, ctest, 3);
-    test_once(0, btest, ctest, 4);
-    test_once(atest, 0, 0, 5);
-    test_once(0, btest, 0, 6);
-    test_once(0, 0, ctest, 7);
-    for (int i = 7; i < 17; i++){
-        /*random input data*/
-        atest = -20 + rand()%40;
-        btest = -20 + rand()%40;
-        ctest = -20 + rand()%40;
+    double atest = -20 + (double)(rand()) / RAND_MAX * 40;
+    double btest = -20 + (double)(rand()) / RAND_MAX * 40;
+    double ctest = -20 + (double)(rand()) / RAND_MAX * 40;
+
+    test_once(0,     0,     0,     1);
+
+    test_once(0,     btest, ctest, 2);
+    test_once(atest, 0,     ctest, 3);
+    test_once(atest, btest, 0,     4);
+
+    test_once(atest, 0,     0,     5);
+    test_once(0,     btest, 0,     6);
+    test_once(0,     0,     ctest, 7);
+
+    for (int i = 8; i < 17; i++){
+
+        atest = -20 + (double)(rand()) / RAND_MAX * 40 ;
+        btest = -20 + (double)(rand()) / RAND_MAX * 40 ;;
+        ctest = -20 + (double)(rand()) / RAND_MAX * 40 ;;
+
         test_once(atest, btest, ctest, i);
     }
     printf("\n");

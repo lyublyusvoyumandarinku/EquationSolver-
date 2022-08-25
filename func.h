@@ -1,6 +1,16 @@
 #ifndef FUNC_H_INCLUDED
 #define FUNC_H_INCLUDED
 
+
+/**ASSERT
+*@param logical expression
+@brief
+*/
+#define ASSERT(cond) \
+    if (!(cond)) printf("Error in the expression (%s) in line %d ", #cond, __LINE__);  \
+    else printf("OK! ");
+
+
 const int INF = -1;
 const double EPS  = 1e-4;
 int eq_0(double a);
