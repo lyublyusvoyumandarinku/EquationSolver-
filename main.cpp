@@ -3,23 +3,31 @@
 #include <math.h>
 #include <time.h>
 #include <assert.h>
+#include <string.h>
 #include <TXLib.h>
 #include <locale.h>
 
 #include "func.h"
 #include "test.h"
 
-//#define TESTS
 
-int main(){
+
+int main(int argc, const char* argv[]) {
+
     srand(time(NULL));
 
-    #ifdef TESTS
-        testing();
-    #endif
+
+    if (argc > 1) {
+        char tests[] = "test";
+
+        if (!(strcmp (&tests[0], argv[1]))) {
+            testing();
+            return 0;
+        }
+    }
 
 
-    if (mode() == 1){
+    if (mode() == 1) {
 
         double a = NAN, b = NAN, c = NAN;
         input( &a, &b, &c);
