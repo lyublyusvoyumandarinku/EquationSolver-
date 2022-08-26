@@ -19,6 +19,9 @@ int main(){
     #endif
 
 
+
+    file_data();
+
     double a = NAN, b = NAN, c = NAN;
 
     input( &a, &b, &c);
@@ -29,4 +32,3 @@ int main(){
 }
 
 
-//днаюбхрэ времхе хг тюикю

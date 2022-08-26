@@ -36,9 +36,9 @@ int square_equation(double a, double b, double c, double *x1, double *x2){
     ASSERT(x1 == NULL);
     ASSERT(x2 == NULL);
 
-    ASSERT(!(isfinite(a)));
-    ASSERT(!(isfinite(b)));
-    ASSERT(!(isfinite(c)));
+    assert_isf(a);
+    assert_isf(b);
+    assert_isf(c);
 
     if (eq_0(a)) {
         int ans = linear_equation(b, c, x1);
@@ -76,8 +76,8 @@ int linear_equation(double b, double c, double *x1){
 
     ASSERT(x1 == NULL);
 
-    ASSERT(!(isfinite(b)));
-    ASSERT(!(isfinite(c)));
+    assert_isf(b);
+    assert_isf(c);
 
     if (eq_0(b) && eq_0(c))  return INF;
 
@@ -93,11 +93,13 @@ int linear_equation(double b, double c, double *x1){
 */
 void input(double *a, double *b, double *c) {
 
+
     ASSERT(a == NULL);
     ASSERT(b == NULL);
     ASSERT(c == NULL);
 
-    printf("HELLO!\nEnter the coefficients of the equation (a, b, c): ");
+    printf("\nDATA FROM THE CONSOLE\n");
+    printf("Enter the coefficients of the equation (a, b, c): ");
 
     int n = scanf("%lf %lf %lf", a, b, c);
     while(1){
@@ -106,14 +108,15 @@ void input(double *a, double *b, double *c) {
             n = scanf("%lf %lf %lf", a, b, c);
         }
         else{
-            ASSERT(!(isfinite(*a)));
-            ASSERT(!(isfinite(*b)));
-            ASSERT(!(isfinite(*c)));
+            assert_isf(*a);
+            assert_isf(*b);
+            assert_isf(*c);
             break;
         }
     }
 
  }
+
 
 /**auxiliary input function*/
 void pretty_input(){
@@ -122,17 +125,55 @@ void pretty_input(){
 }
 
 
+/**reads the coefficients of an equation from a file*/
+void file_input(double *a, double *b, double *c, FILE *fp) {
 
-/**the function the function starts solving the
+    int n = fscanf(fp, "%lf %lf %lf", a, b, c);
+    if (n != 3)
+        printf("ERROR! Enter the coefficients of the equation in file again!/n");
+
+}
+
+
+/**provides work with data in a file*/
+void file_data(){
+
+    printf("\nDATA FROM THE FILE\n");
+    char file_name[] = "data_imput.txt";
+    FILE *fp = fopen(file_name, "r");
+
+    if (fp == NULL){
+        printf("error! file hasn't opened");
+        abort();
+    }
+
+    while(!feof(fp)){
+        double a = NAN, b = NAN, c = NAN;
+        file_input(&a, &b, &c, fp);
+        output(a, b, c);
+    }
+
+    fclose(fp);
+}
+
+
+/**checks the number for its finiteness*/
+void assert_isf(double x){
+    ASSERT(!(isfinite(x)));
+}
+
+
+
+/**the function starts solving the
   equation and displays the result of its work on the screen
  *@param *a,*b,*c - variables ( Coefficients of the equation)
 
   */
 void output(double a, double b, double c) {
 
-    ASSERT(!(isfinite(a)));
-    ASSERT(!(isfinite(b)));
-    ASSERT(!(isfinite(c)));
+    assert_isf(a);
+    assert_isf(b);
+    assert_isf(c);
 
     double x1 = NAN, x2 = NAN;
     printf("The equation is: (%.2lg)*x^2  + (%.2lg)*x + (%.2lg) = 0\n", a, b, c);
@@ -145,6 +186,6 @@ void output(double a, double b, double c) {
         default:  abort();
     }
 
-    printf("\nChecking: ");
-    test_once(a, b, c, 1);
+    printf("Checking: ");
+    test_once(a, b, c, 0);
 }

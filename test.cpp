@@ -19,9 +19,9 @@ double rand_num(double step){
 */
 void test_once(double a, double b, double c, int i){
 
-    ASSERT(!(isfinite(a)));
-    ASSERT(!(isfinite(b)));
-    ASSERT(!(isfinite(c)));
+    assert_isf(a);
+    assert_isf(b);
+    assert_isf(c);
 
     printf("Test %2.d, results of test: ", i);
 
@@ -45,7 +45,7 @@ void test_once(double a, double b, double c, int i){
     else  ok = 1;
     if (ok == 1){
         printf("All is OK!");
-        if (n_roots > 0)    printf(" Count of roots: %d", n_roots);
+        if (n_roots > 0)    printf(" Count of roots: %d  ", n_roots);
 
         if (n_roots == INF)   printf(" Infinite number of roots for a = %.2lg, b = %.2lg, c = %.2lg", a,     b,     c);
         if (n_roots == 0)     printf(" No roots for a = %.2lg, b = %.2lg, c = %.2lg",                 a,     b,     c);
@@ -82,5 +82,6 @@ void testing(){
 
         test_once(atest, btest, ctest, i);
     }
+
     printf("\n");
 }

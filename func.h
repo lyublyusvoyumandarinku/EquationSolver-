@@ -10,6 +10,8 @@
     if (cond) printf("Error in the expression (%s) in line %d ", #cond, __LINE__);  \
     //else printf("OK! ");
 
+void assert_isf(double x);
+
 
 const int INF = -1;
 const double EPS  = 1e-4;
@@ -23,6 +25,11 @@ int linear_equation(double b, double c, double *x1);
 
 void input(double *a, double *b, double *c);
 void pretty_input();
+
+void file_input(double *a, double *b, double *c);
+
+void file_data();
+
 
 void output(double a, double b, double c);
 
