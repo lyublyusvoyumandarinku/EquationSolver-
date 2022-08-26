@@ -20,7 +20,7 @@ int main(int argc, const char* argv[]) {
     if (argc > 1) {
         char tests[] = "test";
 
-        if (!(strcmp (&tests[0], argv[1]))) {
+        if (!(strcmp (tests, argv[1]))) {
             testing();
             return 0;
         }

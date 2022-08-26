@@ -89,7 +89,7 @@ void testing() {
     test_once_with_roots(0,   0,  0,  number_test++, INFINITE_ROOTS);
     test_once_with_roots(1,   2, -3,  number_test++,      TWO_ROOTS);
     test_once_with_roots(-1,  4,  3,  number_test++,      TWO_ROOTS);
-    test_once_with_roots(17, 18, 19,  number_test++,       ZERO_ROOT);
+    test_once_with_roots(17, 18, 19,  number_test++,   ABSENCE_ROOTS);
 
 
     test_once(0,     0,     0,     number_test++);
@@ -102,13 +102,13 @@ void testing() {
     test_once(0,     btest, 0,     number_test++);
     test_once(0,     0,     ctest, number_test++);
 
-    for (int i = number_test; i < number_test + 5; i++){
+    for (int i = 0; i < 5; i++){
 
         atest = rand_num(20);
         btest = rand_num(20);
         ctest = rand_num(20);
 
-        test_once(atest, btest, ctest, i);
+        test_once(atest, btest, ctest, number_test++);
     }
 
     printf("\n");
