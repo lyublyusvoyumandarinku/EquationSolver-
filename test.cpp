@@ -19,9 +19,9 @@ double rand_num(double step){
 */
 void test_once(double a, double b, double c, int i){
 
-    assert_isf(a);
-    assert_isf(b);
-    assert_isf(c);
+    assert_isfinite(a);
+    assert_isfinite(b);
+    assert_isfinite(c);
 
     printf("Test %2.d, results of test: ", i);
 
@@ -60,21 +60,24 @@ void test_once(double a, double b, double c, int i){
 
 /**tests the program once with random input data*/
 void testing(){
+
+    int M = 1;
+
     double atest = rand_num(20);
     double btest = rand_num(20);
     double ctest = rand_num(20);
 
-    test_once(0,     0,     0,     1);
+    test_once(0,     0,     0,     M++);
 
-    test_once(0,     btest, ctest, 2);
-    test_once(atest, 0,     ctest, 3);
-    test_once(atest, btest, 0,     4);
+    test_once(0,     btest, ctest, M++);
+    test_once(atest, 0,     ctest, M++);
+    test_once(atest, btest, 0,     M++);
 
-    test_once(atest, 0,     0,     5);
-    test_once(0,     btest, 0,     6);
-    test_once(0,     0,     ctest, 7);
+    test_once(atest, 0,     0,     M++);
+    test_once(0,     btest, 0,     M++);
+    test_once(0,     0,     ctest, M++);
 
-    for (int i = 8; i < 17; i++){
+    for (int i = M; i < M+5; i++){
 
         atest = rand_num(20);
         btest = rand_num(20);

@@ -2,6 +2,17 @@
 #define FUNC_H_INCLUDED
 
 
+
+
+enum Roots {
+    ABSENCE_ROOTS,
+    ONE_ROOT,
+    TWO_ROOTS,
+    INFINITE_ROOTS = -1
+};
+
+
+
 /**ASSERT
 *@param logical expression
 @brief
@@ -10,8 +21,9 @@
     if (cond) printf("Error in the expression (%s) in line %d ", #cond, __LINE__);  \
     //else printf("OK! ");
 
-void assert_isf(double x);
+void assert_isfinite(double x);
 
+int mode();
 
 const int INF = -1;
 const double EPS  = 1e-4;
@@ -31,6 +43,6 @@ void file_input(double *a, double *b, double *c);
 void file_data();
 
 
-void output(double a, double b, double c);
+void solve_and_output(double a, double b, double c);
 
 #endif // FUNC_H_INCLUDED

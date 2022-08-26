@@ -19,14 +19,19 @@ int main(){
     #endif
 
 
+    if (mode() == 1){
 
-    file_data();
+        double a = NAN, b = NAN, c = NAN;
+        input( &a, &b, &c);
 
-    double a = NAN, b = NAN, c = NAN;
+        solve_and_output(a, b, c);
+    }
 
-    input( &a, &b, &c);
+    else
+        file_data();
 
-    output(a, b, c);
+
+
 
 
 }

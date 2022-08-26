@@ -4,6 +4,19 @@
 #include "func.h"
 #include "test.h"
 
+int mode() {
+
+    printf("where will the data be entered from?\n1 - console\n2 - file\n");
+
+    int mode = NAN;
+
+    while ( ((scanf("%d", &mode)) != 1) && (mode != 1) && (mode != 2)  )
+        printf("Error!");
+
+    return mode;
+}
+
+
 /** eq
 Compares fractional numbers
 @param a,b compared numbers
@@ -36,9 +49,9 @@ int square_equation(double a, double b, double c, double *x1, double *x2){
     ASSERT(x1 == NULL);
     ASSERT(x2 == NULL);
 
-    assert_isf(a);
-    assert_isf(b);
-    assert_isf(c);
+    assert_isfinite(a);
+    assert_isfinite(b);
+    assert_isfinite(c);
 
     if (eq_0(a)) {
         int ans = linear_equation(b, c, x1);
@@ -50,16 +63,16 @@ int square_equation(double a, double b, double c, double *x1, double *x2){
         double d = b*b - 4*a*c;
         if (eq_0(d)) {
             *x1 = *x2 = -b / (2*a);
-             return 1;
+             return ONE_ROOT;
         }
 
-        else if (d < 0) return 0;
+        else if (d < 0) return ABSENCE_ROOTS;
 
         else {
             double sd = sqrt(d);
             *x1 = -(b+sd) / (2*a);
             *x2 = -(b-sd) / (2*a);
-            return 2;
+            return TWO_ROOTS;
         }
 
     }
@@ -76,14 +89,14 @@ int linear_equation(double b, double c, double *x1){
 
     ASSERT(x1 == NULL);
 
-    assert_isf(b);
-    assert_isf(c);
+    assert_isfinite(b);
+    assert_isfinite(c);
 
-    if (eq_0(b) && eq_0(c))  return INF;
+    if (eq_0(b) && eq_0(c))  return INFINITE_ROOTS;
 
-    if (eq_0(b) && !eq_0(c)) return 0;
+    if (eq_0(b) && !eq_0(c)) return ABSENCE_ROOTS;
 
-    else *x1 = (-c) / b; return 1;
+    else *x1 = (-c) / b; return ONE_ROOT;
 }
 
 
@@ -108,9 +121,9 @@ void input(double *a, double *b, double *c) {
             n = scanf("%lf %lf %lf", a, b, c);
         }
         else{
-            assert_isf(*a);
-            assert_isf(*b);
-            assert_isf(*c);
+            assert_isfinite(*a);
+            assert_isfinite(*b);
+            assert_isfinite(*c);
             break;
         }
     }
@@ -150,7 +163,7 @@ void file_data(){
     while(!feof(fp)){
         double a = NAN, b = NAN, c = NAN;
         file_input(&a, &b, &c, fp);
-        output(a, b, c);
+        solve_and_output(a, b, c);
     }
 
     fclose(fp);
@@ -158,7 +171,7 @@ void file_data(){
 
 
 /**checks the number for its finiteness*/
-void assert_isf(double x){
+void assert_isfinite(double x){
     ASSERT(!(isfinite(x)));
 }
 
@@ -169,11 +182,11 @@ void assert_isf(double x){
  *@param *a,*b,*c - variables ( Coefficients of the equation)
 
   */
-void output(double a, double b, double c) {
+void solve_and_output(double a, double b, double c) {
 
-    assert_isf(a);
-    assert_isf(b);
-    assert_isf(c);
+    assert_isfinite(a);
+    assert_isfinite(b);
+    assert_isfinite(c);
 
     double x1 = NAN, x2 = NAN;
     printf("The equation is: (%.2lg)*x^2  + (%.2lg)*x + (%.2lg) = 0\n", a, b, c);
@@ -188,4 +201,5 @@ void output(double a, double b, double c) {
 
     printf("Checking: ");
     test_once(a, b, c, 0);
+    printf("\n");
 }
