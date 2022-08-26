@@ -14,7 +14,8 @@ double rand_num(double step){
 }
 
 
-/**tests the program once with random input data
+/**test_once
+*@brief tests the program once with random input data
 *@param a,b, c - Coefficients of the equation
 */
 void test_once(double a, double b, double c, int i){
@@ -58,7 +59,8 @@ void test_once(double a, double b, double c, int i){
 }
 
 
-/**tests the program once with random input data*/
+/**testing
+tests the program once with random input data*/
 void testing(){
 
     int M = 1;

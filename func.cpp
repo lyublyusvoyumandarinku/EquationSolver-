@@ -4,6 +4,9 @@
 #include "func.h"
 #include "test.h"
 
+/**mode
+*@brief offers the user to choose where to get the data from
+*/
 int mode() {
 
     printf("where will the data be entered from?\n1 - console\n2 - file\n");
@@ -102,7 +105,9 @@ int linear_equation(double b, double c, double *x1){
 
 
 /**input
-*@param *a,*b,*c - variable addresses
+*@brief reads data from the console and writes it to variables at their address
+ when errors occur, it issues a message
+@param *a,*b,*c - variable addresses
 */
 void input(double *a, double *b, double *c) {
 
@@ -138,7 +143,11 @@ void pretty_input(){
 }
 
 
-/**reads the coefficients of an equation from a file*/
+/**file_input
+*@brief reads data from a file and writes it to variables at their address
+*@param *a,*b,*c - variable addresses
+*@param *fp - pointer to the file
+*/
 void file_input(double *a, double *b, double *c, FILE *fp) {
 
     int n = fscanf(fp, "%lf %lf %lf", a, b, c);
@@ -148,7 +157,9 @@ void file_input(double *a, double *b, double *c, FILE *fp) {
 }
 
 
-/**provides work with data in a file*/
+/**file_data
+*@brief provides work with data in a file
+*/
 void file_data(){
 
     printf("\nDATA FROM THE FILE\n");
@@ -170,16 +181,18 @@ void file_data(){
 }
 
 
-/**checks the number for its finiteness*/
+/**assert_isfinite
+*@brief checks the number for its finiteness
+*/
 void assert_isfinite(double x){
     ASSERT(!(isfinite(x)));
 }
 
 
-
-/**the function starts solving the
+/**solve_and_output
+*@brief the function starts solving the
   equation and displays the result of its work on the screen
- *@param *a,*b,*c - variables ( Coefficients of the equation)
+*@param *a,*b,*c - variables ( Coefficients of the equation)
 
   */
 void solve_and_output(double a, double b, double c) {

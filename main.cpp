@@ -31,9 +31,6 @@ int main(){
         file_data();
 
 
-
-
-
 }
 
 

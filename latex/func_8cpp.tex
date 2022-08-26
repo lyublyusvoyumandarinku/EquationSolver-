@@ -1,0 +1,182 @@
+\hypertarget{func_8cpp}{}\doxysection{func.\+cpp File Reference}
+\label{func_8cpp}\index{func.cpp@{func.cpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}func.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}test.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{func_8cpp_a6690b9e5d31f47035f0385c6f9699949}{mode}} ()
+\begin{DoxyCompactList}\small\item\em offers the user to choose where to get the data from \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{func_8cpp_ac0e1d4c04322ea26c6c5ba4e7d6504ec}{eq}} (double a, double b)
+\item 
+int \mbox{\hyperlink{func_8cpp_a5a28e1c0ed57505dd7bc9394a9e10e99}{eq\+\_\+0}} (double a)
+\item 
+int \mbox{\hyperlink{func_8cpp_ac224fdbf84080e8bb77abf6f1065bad0}{square\+\_\+equation}} (double a, double b, double c, double $\ast$x1, double $\ast$x2)
+\item 
+int \mbox{\hyperlink{func_8cpp_a16e0fcbcbde20f742e919cb2f499af6d}{linear\+\_\+equation}} (double b, double c, double $\ast$x1)
+\begin{DoxyCompactList}\small\item\em Solves the linear equation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8cpp_a34e8a7d6e2ff8f34a5d2e86b3865cba2}{input}} (double $\ast$a, double $\ast$b, double $\ast$c)
+\begin{DoxyCompactList}\small\item\em reads data from the console and writes it to variables at their address when errors occur, it issues a message \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8cpp_a42bd5eb2f66d7b85a15ff6bef9864b9e}{pretty\+\_\+input}} ()
+\item 
+void \mbox{\hyperlink{func_8cpp_a455e289f64dbaf2e3c254f179d792fcb}{file\+\_\+input}} (double $\ast$a, double $\ast$b, double $\ast$c, FILE $\ast$fp)
+\begin{DoxyCompactList}\small\item\em reads data from a file and writes it to variables at their address \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8cpp_a4b7cf363d9846e54252eafb4bf7a2491}{file\+\_\+data}} ()
+\begin{DoxyCompactList}\small\item\em provides work with data in a file \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8cpp_afd54ccd0dbf47e2481ab110ea940ab9b}{assert\+\_\+isfinite}} (double x)
+\begin{DoxyCompactList}\small\item\em checks the number for its finiteness \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{func_8cpp_ad836f94e57042a108b8f752f7e7e070b}{solve\+\_\+and\+\_\+output}} (double a, double b, double c)
+\begin{DoxyCompactList}\small\item\em the function starts solving the equation and displays the result of its work on the screen \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{func_8cpp_afd54ccd0dbf47e2481ab110ea940ab9b}\label{func_8cpp_afd54ccd0dbf47e2481ab110ea940ab9b}} 
+\index{func.cpp@{func.cpp}!assert\_isfinite@{assert\_isfinite}}
+\index{assert\_isfinite@{assert\_isfinite}!func.cpp@{func.cpp}}
+\doxysubsubsection{\texorpdfstring{assert\_isfinite()}{assert\_isfinite()}}
+{\footnotesize\ttfamily void assert\+\_\+isfinite (\begin{DoxyParamCaption}\item[{double}]{x }\end{DoxyParamCaption})}
+
+
+
+checks the number for its finiteness 
+
+assert\+\_\+isfinite \mbox{\Hypertarget{func_8cpp_ac0e1d4c04322ea26c6c5ba4e7d6504ec}\label{func_8cpp_ac0e1d4c04322ea26c6c5ba4e7d6504ec}} 
+\index{func.cpp@{func.cpp}!eq@{eq}}
+\index{eq@{eq}!func.cpp@{func.cpp}}
+\doxysubsubsection{\texorpdfstring{eq()}{eq()}}
+{\footnotesize\ttfamily int eq (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b }\end{DoxyParamCaption})}
+
+eq Compares fractional numbers 
+\begin{DoxyParams}{Parameters}
+{\em a,b} & compared numbers \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+equal numbers or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{func_8cpp_a5a28e1c0ed57505dd7bc9394a9e10e99}\label{func_8cpp_a5a28e1c0ed57505dd7bc9394a9e10e99}} 
+\index{func.cpp@{func.cpp}!eq\_0@{eq\_0}}
+\index{eq\_0@{eq\_0}!func.cpp@{func.cpp}}
+\doxysubsubsection{\texorpdfstring{eq\_0()}{eq\_0()}}
+{\footnotesize\ttfamily int eq\+\_\+0 (\begin{DoxyParamCaption}\item[{double}]{a }\end{DoxyParamCaption})}
+
+eq\+\_\+0 Compares fractional number 
+\begin{DoxyParams}{Parameters}
+{\em a} & compared with zero number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+equal number zero or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{func_8cpp_a4b7cf363d9846e54252eafb4bf7a2491}\label{func_8cpp_a4b7cf363d9846e54252eafb4bf7a2491}} 
+\index{func.cpp@{func.cpp}!file\_data@{file\_data}}
+\index{file\_data@{file\_data}!func.cpp@{func.cpp}}
+\doxysubsubsection{\texorpdfstring{file\_data()}{file\_data()}}
+{\footnotesize\ttfamily void file\+\_\+data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+provides work with data in a file 
+
+file\+\_\+data \mbox{\Hypertarget{func_8cpp_a455e289f64dbaf2e3c254f179d792fcb}\label{func_8cpp_a455e289f64dbaf2e3c254f179d792fcb}} 
+\index{func.cpp@{func.cpp}!file\_input@{file\_input}}
+\index{file\_input@{file\_input}!func.cpp@{func.cpp}}
+\doxysubsubsection{\texorpdfstring{file\_input()}{file\_input()}}
+{\footnotesize\ttfamily void file\+\_\+input (\begin{DoxyParamCaption}\item[{double $\ast$}]{a,  }\item[{double $\ast$}]{b,  }\item[{double $\ast$}]{c,  }\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+
+
+reads data from a file and writes it to variables at their address 
+
+file\+\_\+input 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$a,$\ast$b,$\ast$c} & -\/ variable addresses \\
+\hline
+{\em $\ast$fp} & -\/ pointer to the file \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{func_8cpp_a34e8a7d6e2ff8f34a5d2e86b3865cba2}\label{func_8cpp_a34e8a7d6e2ff8f34a5d2e86b3865cba2}} 
+\index{func.cpp@{func.cpp}!input@{input}}
+\index{input@{input}!func.cpp@{func.cpp}}
+\doxysubsubsection{\texorpdfstring{input()}{input()}}
+{\footnotesize\ttfamily void input (\begin{DoxyParamCaption}\item[{double $\ast$}]{a,  }\item[{double $\ast$}]{b,  }\item[{double $\ast$}]{c }\end{DoxyParamCaption})}
+
+
+
+reads data from the console and writes it to variables at their address when errors occur, it issues a message 
+
+input 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$a,$\ast$b,$\ast$c} & -\/ variable addresses \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{func_8cpp_a16e0fcbcbde20f742e919cb2f499af6d}\label{func_8cpp_a16e0fcbcbde20f742e919cb2f499af6d}} 
+\index{func.cpp@{func.cpp}!linear\_equation@{linear\_equation}}
+\index{linear\_equation@{linear\_equation}!func.cpp@{func.cpp}}
+\doxysubsubsection{\texorpdfstring{linear\_equation()}{linear\_equation()}}
+{\footnotesize\ttfamily int linear\+\_\+equation (\begin{DoxyParamCaption}\item[{double}]{b,  }\item[{double}]{c,  }\item[{double $\ast$}]{x1 }\end{DoxyParamCaption})}
+
+
+
+Solves the linear equation. 
+
+linear\+\_\+equation 
+\begin{DoxyParams}{Parameters}
+{\em a,b} & -\/ Coefficients of the equation \\
+\hline
+{\em $\ast$x1} & Reference to variable containing the root of the equation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of solutions 
+\end{DoxyReturn}
+\mbox{\Hypertarget{func_8cpp_a6690b9e5d31f47035f0385c6f9699949}\label{func_8cpp_a6690b9e5d31f47035f0385c6f9699949}} 
+\index{func.cpp@{func.cpp}!mode@{mode}}
+\index{mode@{mode}!func.cpp@{func.cpp}}
+\doxysubsubsection{\texorpdfstring{mode()}{mode()}}
+{\footnotesize\ttfamily int mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+offers the user to choose where to get the data from 
+
+mode \mbox{\Hypertarget{func_8cpp_a42bd5eb2f66d7b85a15ff6bef9864b9e}\label{func_8cpp_a42bd5eb2f66d7b85a15ff6bef9864b9e}} 
+\index{func.cpp@{func.cpp}!pretty\_input@{pretty\_input}}
+\index{pretty\_input@{pretty\_input}!func.cpp@{func.cpp}}
+\doxysubsubsection{\texorpdfstring{pretty\_input()}{pretty\_input()}}
+{\footnotesize\ttfamily void pretty\+\_\+input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+auxiliary input function \mbox{\Hypertarget{func_8cpp_ad836f94e57042a108b8f752f7e7e070b}\label{func_8cpp_ad836f94e57042a108b8f752f7e7e070b}} 
+\index{func.cpp@{func.cpp}!solve\_and\_output@{solve\_and\_output}}
+\index{solve\_and\_output@{solve\_and\_output}!func.cpp@{func.cpp}}
+\doxysubsubsection{\texorpdfstring{solve\_and\_output()}{solve\_and\_output()}}
+{\footnotesize\ttfamily void solve\+\_\+and\+\_\+output (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{c }\end{DoxyParamCaption})}
+
+
+
+the function starts solving the equation and displays the result of its work on the screen 
+
+solve\+\_\+and\+\_\+output 
+\begin{DoxyParams}{Parameters}
+{\em $\ast$a,$\ast$b,$\ast$c} & -\/ variables ( Coefficients of the equation) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{func_8cpp_ac224fdbf84080e8bb77abf6f1065bad0}\label{func_8cpp_ac224fdbf84080e8bb77abf6f1065bad0}} 
+\index{func.cpp@{func.cpp}!square\_equation@{square\_equation}}
+\index{square\_equation@{square\_equation}!func.cpp@{func.cpp}}
+\doxysubsubsection{\texorpdfstring{square\_equation()}{square\_equation()}}
+{\footnotesize\ttfamily int square\+\_\+equation (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b,  }\item[{double}]{c,  }\item[{double $\ast$}]{x1,  }\item[{double $\ast$}]{x2 }\end{DoxyParamCaption})}
+
+square\+\_\+equation solves the quadratic equation 
+\begin{DoxyParams}{Parameters}
+{\em a,b,c} & Coefficients of the equation \\
+\hline
+{\em $\ast$x1,$\ast$x2} & References to variables containing the roots of the equation \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of solutions 
+\end{DoxyReturn}
